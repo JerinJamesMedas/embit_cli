@@ -76,6 +76,7 @@ class InitCommand extends BaseCommand {
       'equatable': '^2.0.5',
       'connectivity_plus': '^5.0.2',
       'shared_preferences': '^2.2.2',
+      'google_fonts':'^7.0.1',
     };
     
     final devDependencies = {
