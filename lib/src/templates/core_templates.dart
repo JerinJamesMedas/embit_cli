@@ -1,5 +1,3 @@
-import 'package:embit_cli/src/models/feature_config.dart';
-
 class CoreTemplates {
   // Base Failure
   static String baseFailure(String projectPath) => '''

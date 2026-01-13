@@ -1,3 +1,4 @@
+/// Feature configuration model
 class FeatureConfig {
   final String name;
   final String pascalCase;
@@ -6,6 +7,7 @@ class FeatureConfig {
   final bool withExample;
   final bool force;
   final bool dryRun;
+  final String projectName;
   final String projectPath;
 
   FeatureConfig({
@@ -13,6 +15,7 @@ class FeatureConfig {
     this.withExample = false,
     this.force = false,
     this.dryRun = false,
+    required this.projectName,
     required this.projectPath,
   })  : pascalCase = _toPascalCase(name),
         camelCase = _toCamelCase(name),
@@ -27,6 +30,7 @@ class FeatureConfig {
 
   static String _toCamelCase(String input) {
     final pascal = _toPascalCase(input);
+    if (pascal.isEmpty) return '';
     return '${pascal[0].toLowerCase()}${pascal.substring(1)}';
   }
 }
