@@ -875,7 +875,7 @@ class AppTextStyles {
 
 ''';
     
-    await File('lib/core/usecases/usecase.dart').writeAsString(textStyles);
+    await File('lib/core/theme/app_text_styles.dart').writeAsString(textStyles);
 
 
         const appTheme = '''
@@ -1338,7 +1338,7 @@ class AppTheme {
 }
 ''';
     
-    await File('lib/core/usecases/usecase.dart').writeAsString(appTheme);
+    await File('lib/core/theme/app_theme.dart').writeAsString(appTheme);
   }
 
 //   Future<void> _generateDI() async {
