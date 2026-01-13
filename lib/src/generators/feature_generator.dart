@@ -201,28 +201,42 @@ class FeatureGenerator {
 
     // Add imports
     final imports = DITemplates.featureImports(config, config.projectName);
-    
+
     // Find the last import line
     final importRegex = RegExp(r"import '[^']+';");
     final matches = importRegex.allMatches(content).toList();
     if (matches.isNotEmpty) {
       final lastImportEnd = matches.last.end;
-      content = '${content.substring(0, lastImportEnd)}\n$imports${content.substring(lastImportEnd)}';
+      content =
+          '${content.substring(0, lastImportEnd)}\n$imports${content.substring(lastImportEnd)}';
     }
 
     // Add feature init function
     final registration = DITemplates.featureRegistration(config);
-    
+
     // Find the last function before the closing of the file
     // Look for the last closing brace of a function
-    final lastFunctionEnd = content.lastIndexOf('\n}');
-    if (lastFunctionEnd != -1) {
-      content = '${content.substring(0, lastFunctionEnd)}\n$registration${content.substring(lastFunctionEnd)}';
+    // final lastFunctionEnd = content.lastIndexOf('\n}');
+    // if (lastFunctionEnd != -1) {
+    //   content = '${content.substring(0, lastFunctionEnd)}\n$registration${content.substring(lastFunctionEnd)}';
+    // }
+
+    const endMarker =
+        '// ==================== END OF FEATURE ====================';
+    final index = content.lastIndexOf(endMarker);
+
+    if (index == -1) {
+      throw Exception('END OF FEATURE marker not found');
     }
+
+    final insertPos = index + endMarker.length;
+
+    content = '${content.substring(0, insertPos)}\n\n$registration${content.substring(insertPos)}';
 
     // Add call to initDependencies
     final initCall = DITemplates.featureInitCall(config);
-    final initDepsRegex = RegExp(r'(Future<void> initDependencies\(\) async \{[^}]+)(})');
+    final initDepsRegex =
+        RegExp(r'(Future<void> initDependencies\(\) async \{[^}]+)(})');
     content = content.replaceFirstMapped(initDepsRegex, (match) {
       final existingContent = match.group(1)!;
       // Check if already has call
@@ -245,7 +259,8 @@ class FeatureGenerator {
       // Check if routes already exist
       if (!content.contains("${config.camelCase} = '/${config.snakeCase}'")) {
         // Add to RoutePaths class
-        final routePathsEnd = content.indexOf('}', content.indexOf('class RoutePaths'));
+        final routePathsEnd =
+            content.indexOf('}', content.indexOf('class RoutePaths'));
         if (routePathsEnd != -1) {
           content = content.substring(0, routePathsEnd) +
               RouteTemplates.routePaths(config) +
@@ -253,7 +268,8 @@ class FeatureGenerator {
         }
 
         // Add to RouteNames class
-        final routeNamesEnd = content.indexOf('}', content.indexOf('class RouteNames'));
+        final routeNamesEnd =
+            content.indexOf('}', content.indexOf('class RouteNames'));
         if (routeNamesEnd != -1) {
           content = content.substring(0, routeNamesEnd) +
               RouteTemplates.routeNames(config) +
@@ -273,20 +289,23 @@ class FeatureGenerator {
       // Check if routes already exist
       if (!content.contains('${config.pascalCase}Page')) {
         // Add import
-        final pageImport = RouteTemplates.pageImport(config, config.projectName);
+        final pageImport =
+            RouteTemplates.pageImport(config, config.projectName);
         final importRegex = RegExp(r"import '[^']+';");
         final matches = importRegex.allMatches(content).toList();
         if (matches.isNotEmpty) {
           final lastImportEnd = matches.last.end;
-          content = '${content.substring(0, lastImportEnd)}\n$pageImport${content.substring(lastImportEnd)}';
+          content =
+              '${content.substring(0, lastImportEnd)}\n$pageImport${content.substring(lastImportEnd)}';
         }
 
         // Add GoRoute - find the routes array in ShellRoute or main routes
         // Look for a pattern like "routes: [" and add before the closing "]"
         final routeEntry = RouteTemplates.goRouteEntries(config);
-        
+
         // Find the main routes array (before error routes)
-        final errorRouteIndex = content.indexOf('// ============== ERROR ROUTES');
+        final errorRouteIndex =
+            content.indexOf('// ============== ERROR ROUTES');
         if (errorRouteIndex != -1) {
           // Find the last GoRoute before error routes
           final insertPoint = content.lastIndexOf('),', errorRouteIndex);
@@ -322,7 +341,8 @@ class FeatureGenerator {
         _log('  ✓ Updated api_endpoints.dart');
       }
     } else {
-      _log('  ⚠️ api_endpoints.dart not found. Please add API endpoints manually.');
+      _log(
+          '  ⚠️ api_endpoints.dart not found. Please add API endpoints manually.');
     }
   }
 
