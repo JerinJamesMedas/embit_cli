@@ -207,9 +207,7 @@ class FeatureGenerator {
     final matches = importRegex.allMatches(content).toList();
     if (matches.isNotEmpty) {
       final lastImportEnd = matches.last.end;
-      content = content.substring(0, lastImportEnd) +
-          '\n' + imports +
-          content.substring(lastImportEnd);
+      content = '${content.substring(0, lastImportEnd)}\n$imports${content.substring(lastImportEnd)}';
     }
 
     // Add feature init function
@@ -219,9 +217,7 @@ class FeatureGenerator {
     // Look for the last closing brace of a function
     final lastFunctionEnd = content.lastIndexOf('\n}');
     if (lastFunctionEnd != -1) {
-      content = content.substring(0, lastFunctionEnd) +
-          '\n' + registration +
-          content.substring(lastFunctionEnd);
+      content = '${content.substring(0, lastFunctionEnd)}\n$registration${content.substring(lastFunctionEnd)}';
     }
 
     // Add call to initDependencies
@@ -282,9 +278,7 @@ class FeatureGenerator {
         final matches = importRegex.allMatches(content).toList();
         if (matches.isNotEmpty) {
           final lastImportEnd = matches.last.end;
-          content = content.substring(0, lastImportEnd) +
-              '\n' + pageImport +
-              content.substring(lastImportEnd);
+          content = '${content.substring(0, lastImportEnd)}\n$pageImport${content.substring(lastImportEnd)}';
         }
 
         // Add GoRoute - find the routes array in ShellRoute or main routes
@@ -292,7 +286,7 @@ class FeatureGenerator {
         final routeEntry = RouteTemplates.goRouteEntries(config);
         
         // Find the main routes array (before error routes)
-        final errorRouteIndex = content.indexOf("// ============== ERROR ROUTES");
+        final errorRouteIndex = content.indexOf('// ============== ERROR ROUTES');
         if (errorRouteIndex != -1) {
           // Find the last GoRoute before error routes
           final insertPoint = content.lastIndexOf('),', errorRouteIndex);
