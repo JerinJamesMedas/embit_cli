@@ -11,12 +11,12 @@ executables:
   embit:
 
 dependencies:
-  args: ^2.4.0
+  args: ^2.7.0
   path: ^1.8.0
   yaml: ^3.1.0
   pub_semver: ^2.1.0
   collection: ^1.16.0
 
 dev_dependencies:
-  lints: ^6.0.0
+  lints: ^2.0.0
   test: ^1.21.0
