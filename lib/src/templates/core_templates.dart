@@ -34,7 +34,7 @@ abstract class FeatureFailure extends Failure {
   // Base UseCase
   static String baseUseCase(String projectPath) => '''
 import 'package:dartz/dartz.dart';
-import 'package:${projectPath}/core/errors/failures.dart';
+import 'package:$projectPath/core/errors/failures.dart';
 
 abstract class UseCase<Type, Params> {
   Future<Either<Failure, Type>> call(Params params);

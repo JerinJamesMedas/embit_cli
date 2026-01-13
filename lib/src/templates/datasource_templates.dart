@@ -182,7 +182,7 @@ abstract class ${config.pascalCase}LocalDataSource {
 
   /// Removes a cached ${config.name}
   Future<void> remove${config.pascalCase}(String id);
-
+  
   /// Clears all cached ${config.name}s
   Future<void> clearCache();
 }

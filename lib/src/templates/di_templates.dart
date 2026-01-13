@@ -56,21 +56,23 @@ void _init${config.pascalCase}Feature() {
     () => ${config.pascalCase}LocalDataSourceImpl(sl()),
   );
 }
+
+// ==================== END OF ${config.pascalCase} FEATURE ====================
 ''';
 
   /// Imports to add to injection_container.dart
   static String featureImports(FeatureConfig config, String projectName) => '''
 // ${config.pascalCase} Feature
-import '../features/${config.snakeCase}/data/datasources/${config.snakeCase}_local_datasource.dart';
-import '../features/${config.snakeCase}/data/datasources/${config.snakeCase}_remote_datasource.dart';
-import '../features/${config.snakeCase}/data/repositories/${config.snakeCase}_repository_impl.dart';
-import '../features/${config.snakeCase}/domain/repositories/${config.snakeCase}_repository.dart';
-import '../features/${config.snakeCase}/domain/usecases/create_${config.snakeCase}_usecase.dart';
-import '../features/${config.snakeCase}/domain/usecases/delete_${config.snakeCase}_usecase.dart';
-import '../features/${config.snakeCase}/domain/usecases/get_${config.snakeCase}_usecase.dart';
-import '../features/${config.snakeCase}/domain/usecases/get_all_${config.snakeCase}s_usecase.dart';
-import '../features/${config.snakeCase}/domain/usecases/update_${config.snakeCase}_usecase.dart';
-import '../features/${config.snakeCase}/presentation/bloc/${config.snakeCase}_bloc.dart';
+import '../../features/${config.snakeCase}/data/datasources/${config.snakeCase}_local_datasource.dart';
+import '../../features/${config.snakeCase}/data/datasources/${config.snakeCase}_remote_datasource.dart';
+import '../../features/${config.snakeCase}/data/repositories/${config.snakeCase}_repository_impl.dart';
+import '../../features/${config.snakeCase}/domain/repositories/${config.snakeCase}_repository.dart';
+import '../../features/${config.snakeCase}/domain/usecases/create_${config.snakeCase}_usecase.dart';
+import '../../features/${config.snakeCase}/domain/usecases/delete_${config.snakeCase}_usecase.dart';
+import '../../features/${config.snakeCase}/domain/usecases/get_${config.snakeCase}_usecase.dart';
+import '../../features/${config.snakeCase}/domain/usecases/get_all_${config.snakeCase}s_usecase.dart';
+import '../../features/${config.snakeCase}/domain/usecases/update_${config.snakeCase}_usecase.dart';
+import '../../features/${config.snakeCase}/presentation/bloc/${config.snakeCase}_bloc.dart';
 ''';
 
   /// Call to add in initDependencies()
