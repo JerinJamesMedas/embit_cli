@@ -136,10 +136,22 @@ import 'package:$projectName/features/${config.snakeCase}/presentation/pages/${c
   }
 
   /// API endpoint constants
-  static String apiEndpoint(FeatureConfig config) => '''
-  // ============== ${config.pascalCase.toUpperCase()} ==============
-  static const String ${config.camelCase}s = '/${config.snakeCase}s';
-  static const String ${config.camelCase}ById = '/${config.snakeCase}s/{id}';
+//   static String apiEndpoint(FeatureConfig config) => '''
+//   // ============== ${config.pascalCase.toUpperCase()} ==============
+//   static const String ${config.camelCase}s = '/${config.snakeCase}s';
+//   static const String ${config.camelCase}ById = '/${config.snakeCase}s/{id}';
+// ''';
+
+
+  /// API endpoints to add
+static String apiEndpoint(FeatureConfig config) => '''
+// ================= ${config.pascalCase} ============================
+static const String ${config.camelCase}Base = '\$baseurl/${config.camelCase}s';
+static const String get${config.camelCase}s = '\$${config.camelCase}Base/get';
+static const String getall${config.camelCase}s = '\$${config.camelCase}Base/getall';
+static const String create${config.camelCase}s = '\$${config.camelCase}Base/create';
+static const String delete${config.camelCase}s = '\$${config.camelCase}Base/delete';
+static const String update${config.camelCase}s = '\$${config.camelCase}Base/update';
 ''';
 
   /// Route guards addition
