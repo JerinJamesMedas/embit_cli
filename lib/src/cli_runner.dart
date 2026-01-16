@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:args/args.dart';
-import 'package:embit_cli/src/commands/init_command.dart';
-import 'package:embit_cli/src/commands/feature_command.dart';
+import 'commands/init_command.dart';
+import 'commands/feature_command.dart';
 
 void run(List<String> arguments) {
   final parser = ArgParser()
@@ -28,7 +28,7 @@ void run(List<String> arguments) {
     }
 
     if (results['version'] == true) {
-      print('Embit CLI v1.0.0');
+      print('Embit CLI v0.6.0');
       print('Architecture enforcement for Flutter');
       return;
     }
@@ -55,7 +55,7 @@ void run(List<String> arguments) {
 void _printHelp(ArgParser parser) {
   print('''
 ╔════════════════════════════════════════╗
-║            Embit CLI v1.0.0            ║
+║            Embit CLI v0.6.0            ║
 ║    Architecture Enforcement Tool        ║
 ╚════════════════════════════════════════╝
 

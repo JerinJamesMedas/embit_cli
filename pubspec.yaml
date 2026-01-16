@@ -1,14 +1,14 @@
 
 name: embit_cli
 description: Architecture-first CLI for Flutter Starter Kit - Clean Architecture with DI, Bloc, and GoRouter
-version: 1.0.0
+version: 0.6.0
 repository: https://github.com/JerinJamesMedas/embit_cli.git
 homepage: https://github.com/JerinJamesMedas/embit_cli
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
 
-executables:
+executables: 
   embit:
 
 dependencies:
